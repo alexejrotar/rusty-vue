@@ -13,6 +13,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "vue-template-compiler": "^2.6.11"
+    "@wasm-tool/wasm-pack-plugin": "^1.5.0",
+    "vue-template-compiler": "^2.6.14"
   }
 }
