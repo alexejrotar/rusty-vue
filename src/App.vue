@@ -1,21 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    1 + 1 = {{ result }}
+    <div>
+      {{ a }} + {{ b }} = {{ result }}
+    </div>
+    <div>
+      <button @click="compute()">Compute</button>
+      <input type="number" v-model.number="a">
+      <input type="number" v-model.number="b">
+    </div>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  },
+  /*
   computed: {
     result() {
       return this.$rust.add(1,1)
+    }
+  }
+  */
+  data() {
+    return {
+      a: 0,
+      b: 0,
+      result:0
+    }
+  },
+  methods: {
+    compute() {
+      this.$rust.compute(this.$data)
     }
   }
 }

@@ -1,14 +1,20 @@
 use wasm_bindgen::prelude::*;
+use serde::{Serialize,Deserialize};
+use js_sys::Reflect::{get,set};
 
-#[wasm_bindgen]
-pub fn add(x: i32, y: i32) -> i32 {
-  use web_sys::console;
-  let answer = format!("adding {} and {} yields {}", x, y, x+y);
-  console::log_1(&answer.into());
-  x + y
+#[derive(Serialize,Deserialize)]
+pub struct Data {
+  a: i32,
+  b: i32,
+  result: i32
 }
 
 #[wasm_bindgen]
-pub fn sub(x: i32, y: i32) -> i32 {
-  x - y
+pub fn compute(data: JsValue) {
+  let deserialized: Data = data.into_serde().unwrap();
+  let a = deserialized.a;
+  let b = deserialized.b;
+  let result: i32 = a + b;
+  set(&data, &"result".into(), &result.into());
 }
+
