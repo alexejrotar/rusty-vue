@@ -4,7 +4,6 @@
       {{ a }} + {{ b }} = {{ result }}
     </div>
     <div>
-      <button @click="compute()">Compute</button>
       <input type="number" v-model.number="a">
       <input type="number" v-model.number="b">
     </div>
@@ -15,23 +14,19 @@
 <script>
 export default {
   name: 'App',
-  /*
-  computed: {
-    result() {
-      return this.$rust.add(1,1)
+  watch: {
+    a() {
+      this.$rust.compute(this.$data)
+    },
+    b() {
+      this.$rust.compute(this.$data)
     }
-  }
-  */
+  },
   data() {
     return {
       a: 0,
       b: 0,
       result:0
-    }
-  },
-  methods: {
-    compute() {
-      this.$rust.compute(this.$data)
     }
   }
 }
